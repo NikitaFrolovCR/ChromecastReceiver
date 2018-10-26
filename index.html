@@ -1,0 +1,146 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+    <script src="https://smartplugin.youbora.com/v6/js/adapters/chromecastcaf/6.1.0/sp.min.js"></script>
+</head>
+<body>
+<cast-media-player id="player"></cast-media-player>
+<style>
+    /* Add here any special style for CAST player */
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+    #player {
+        --progress-color: rgba(255, 255, 255, 0.2);
+        --splash-image: url("assets/logo.png");
+        --splash-background: #1A2237;
+        --splash-color: #1A2237;
+        --logo-image: url("assets/logo.png");
+        --logo-background: #1A2237;
+        --font-family: 'Open Sans',sans-serif;
+    }
+</style>
+
+<script>
+
+    // window.plugin = new youbora.Plugin({ accountCode: 'tdc' });
+
+    var account = "TDC Blockbuster - Production";
+    var schema = "1.0";
+    var form = "cjson";
+
+    const context = cast.framework.CastReceiverContext.getInstance();
+
+    if (typeof youbora != "undefined" && typeof youbora.adapters.ChromecastCAF != "undefined") {
+        window.plugin = new youbora.Plugin({accountCode: 'tdc'})
+        // plugin.setOptions(
+        //     {
+        //         'username': username,
+        //         'parse.hls': true,
+        //         'parse.CDNNode': true,
+        //     }
+        // );
+
+        var player = context.getPlayerManager();
+        plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
+    }
+
+    var lastValue = 0;
+    context.getPlayerManager().addEventListener(
+        cast.framework.events.EventType.TIME_UPDATE, (event) => {
+            var value = Math.floor(event.currentMediaTime);
+            if(value % 10 == 0 && value != lastValue){
+                lastValue = value;
+
+                const queueManager = context.getPlayerManager().getQueueManager();
+                const currentItemMedia = queueManager.getCurrentItem().media;
+
+                byAboutId = currentItemMedia.customData.byAboutId;
+                byUserListId = currentItemMedia.customData.byUserListId;
+                guid = currentItemMedia.customData.guid;
+
+                deleteSettings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="+schema+"&form="+form+"&account="+account+"&token="+token+"&byAboutId="+byAboutId+"&byUserListId="+byUserListId,
+                    "method": "DELETE"
+                };
+
+                postSettings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="+schema+"&form="+form+"&account="+account+"&token="+token+"&byAboutId="+byAboutId+"&byUserListId="+byUserListId,
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json",
+                    },
+                    "processData": false,
+                    "data": "{\"$xmlns\":{\"pluserlistitem\":\"http://xml.theplatform.com/userprofile/data/UserListItem\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\""+byUserListId+"\",\"aboutId\":\""+byAboutId+"\",\"description\":\""+guid+"\",\"tdc$additionalData\":{\"timestamp\":\""+value+"\"}}"
+                };
+
+                $.ajax(deleteSettings).done(function (response) {
+                    $.ajax(postSettings).done(function (response) {
+                    });
+                });
+            }
+        });
+
+
+    var token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid;
+    const playbackConfig = new cast.framework.PlaybackConfig();
+    // Customize the license url for playback
+    playbackConfig.licenseUrl = 'https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0';
+    playbackConfig.protectionSystem = 'widevine';
+
+    //Modify License request before do it.
+    //Add extra parameters, headers and content body modification.
+    playbackConfig.licenseRequestHandler = requestInfo => {
+
+        var challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
+        requestInfo.content = JSON.stringify({ getWidevineLicense: { releasePid: pid, widevineChallenge: challenge } });
+        requestInfo.headers['content-type'] = "application/json;charset=UTF-8";
+        requestInfo.url = requestInfo.url + "&account=http://access.auth.theplatform.com/data/Account/2693468579&form=json&token=" + token;
+        //requestInfo.withCredentials = true;
+    };
+
+    //Manage License URL response and modify before use it.
+    playbackConfig.licenseHandler = data => {
+        var response = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(data)));
+        var license = response.getWidevineLicenseResponse.license;
+        var raw = window.atob(license);
+        var rawLength = raw.length;
+        var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+        for (var i = 0; i < rawLength; i++) {
+            array[i] = raw.charCodeAt(i);
+        };
+
+        return array;
+    };
+
+    // Collect loadRequestData to get the pid and token needed by licenseURL request.
+    context.getPlayerManager().setMessageInterceptor(
+        cast.framework.messages.MessageType.LOAD, loadRequestData => {
+            token = loadRequestData.media.customData.token;
+            pid = loadRequestData.media.customData.releasePid;
+            username = loadRequestData.media.customData.email;
+            byAboutId = loadRequestData.media.customData.byAboutId;
+            byUserListId = loadRequestData.media.customData.byUserListId;
+            guid = loadRequestData.media.customData.guid;
+
+            if (typeof youbora != "undefined" && typeof youbora.adapters.ChromecastCAF != "undefined") {
+                // window.plugin = new youbora.Plugin({accountCode: 'tdc'})
+                plugin.setOptions(
+                    {
+                        'username': username,
+                        'parse.hls': true,
+                        'parse.CDNNode': true,
+                    }
+                );
+            };
+
+            return loadRequestData;
+        });
+    context.start({ playbackConfig: playbackConfig });
+</script>
+</body>
+</html>
