@@ -26,7 +26,7 @@
     var schema = "1.0";
     var form = "cjson";
     const context = cast.framework.CastReceiverContext.getInstance();
-    if (typeof youbora != "undefined" && typeof youbora.adapters.ChromecastCAF != "undefined") {
+    /*if (typeof youbora != "undefined" && typeof youbora.adapters.ChromecastCAF != "undefined") {
         window.plugin = new youbora.Plugin({accountCode: 'tdc'})
         // plugin.setOptions(
         //     {
@@ -37,7 +37,7 @@
         // );
         var player = context.getPlayerManager();
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
-    }
+    }*/
     var lastValue = 0;
     /*context.getPlayerManager().addEventListener(
         cast.framework.events.EventType.TIME_UPDATE, (event) => {
@@ -81,6 +81,7 @@
     //Modify License request before do it.
     //Add extra parameters, headers and content body modification.
     playbackConfig.licenseRequestHandler = requestInfo => {
+        console.log('CHECKRequest!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         var challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
         requestInfo.content = JSON.stringify({ getWidevineLicense: { releasePid: pid, widevineChallenge: challenge } });
         requestInfo.headers['content-type'] = "application/json;charset=UTF-8";
@@ -89,6 +90,7 @@
     };
     //Manage License URL response and modify before use it.
     playbackConfig.licenseHandler = data => {
+        console.log('CHECKHandler!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         var response = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(data)));
         var license = response.getWidevineLicenseResponse.license;
         var raw = window.atob(license);
