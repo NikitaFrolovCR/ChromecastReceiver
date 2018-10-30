@@ -104,6 +104,7 @@
     // Collect loadRequestData to get the pid and token needed by licenseURL request.
     context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.LOAD, loadRequestData => {
+            console.log('CHECKloadRequestData!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
             token = loadRequestData.media.customData.token;
             pid = loadRequestData.media.customData.releasePid;
             username = loadRequestData.media.customData.email;
