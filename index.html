@@ -39,7 +39,7 @@
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
     }
     var lastValue = 0;
-    context.getPlayerManager().addEventListener(
+    /*context.getPlayerManager().addEventListener(
         cast.framework.events.EventType.TIME_UPDATE, (event) => {
             var value = Math.floor(event.currentMediaTime);
             if(value % 10 == 0 && value != lastValue){
@@ -72,6 +72,7 @@
                 });
             }
         });
+        */
     var token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid;
     const playbackConfig = new cast.framework.PlaybackConfig();
     // Customize the license url for playback
