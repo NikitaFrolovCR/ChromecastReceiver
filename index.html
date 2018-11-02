@@ -30,13 +30,6 @@
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
         window.plugin = new youbora.Plugin({accountCode: 'tdc'});
-        plugin.setOptions(
-            {
-                'username': username,
-                'parse.hls': true,
-                'parse.CDNNode': true,
-            }
-        );
 
         const player = context.getPlayerManager();
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
