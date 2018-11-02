@@ -73,7 +73,7 @@
                 };
 
                 $.ajax(deleteSettings)
-                    .success((response) => {
+                    .done((response) => {
                         $.ajax(postSettings).done((res) => {
                         });
                     });
