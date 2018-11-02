@@ -2,96 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="870296f3-f9a1-451e-8183-e06560c81d29" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AppModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classes/ApiListResponce.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classes/ServerController.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../controllers/MessageController.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../controllers/RoomController.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../controllers/SessionController.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../controllers/UserController.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/dto/ListResponseDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/dto/PaginatedDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/dto/PaginationDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/dto/ResponseDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/pipes/JoiValidationPipe.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/schemas/CreateSchemaFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/schemas/FindByIdSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/schemas/PaginationSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../core/utils/TimeManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../development.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guards/AllowSession.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guards/AuthGuard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/APIResponse.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/ActivationCheckOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/CommonAttributes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/DepartmentAttributes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/IFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/LanguageAttributes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/RoleAttributes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/RoleCreateRoleAttributes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/RouteOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/ServerOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/SocketDescriptor.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../interfaces/SocketEventOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../migration/Room.migration.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../migration/User.migration.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/base/BaseEntity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/base/dto/BaseDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/config/ConfigModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/database/DatabaseModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/MessageEntity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/MessageModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/MessageService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/dto/CreateMessageDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/dto/FindMessagesDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/dto/MessageDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/dto/ReadMessageDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/schemas/CreateMessageSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/schemas/FindMessagesSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/message/schemas/ReadMessageSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/RoomEntity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/RoomModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/RoomService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/dto/AddUsersRoomDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/dto/CreateRoomDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/dto/RegisterRoomDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/dto/RoomDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/dto/RoomUsersDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/factory/RoomFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/room/schemas/CreateRoomSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/session/SessionEntity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/session/SessionModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/session/SessionService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/socket/SocketModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/socket/SocketService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/UserEntity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/UserModule.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/UserService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/dto/CreateUserDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/dto/FindUsersDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/dto/RegisterUserDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/dto/UserDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/factory/UserFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../models/user/schemas/FindUsersSchema.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../process.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../production.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../services/ConfigService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/HashUtil.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/constants.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/decorators.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/formatter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/logger.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/mailer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../utils/validator.ts" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -136,9 +51,41 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1214181228">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gitignore" value="1" />
+          <entry key="html" value="113" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="113" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+          <entry key="svg" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="SVG" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -148,20 +95,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="1500">
+              <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/logo.svg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -177,6 +129,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/.gitirnore" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -192,9 +145,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="64" />
-    <option name="y" value="1069" />
-    <option name="width" value="1857" />
+    <option name="x" value="46" />
+    <option name="y" value="-11" />
+    <option name="width" value="1875" />
     <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -203,18 +156,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="express" type="b2602c69:ProjectViewProjectNode" />
-              <item name="express" type="462c0819:PsiDirectoryNode" />
+              <item name="ChromecastReceiver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChromecastReceiver" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,6 +176,121 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.html</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -247,22 +315,21 @@
       <option name="presentableId" value="Default" />
       <updated>1540479530376</updated>
       <workItem from="1540479531469" duration="259000" />
+      <workItem from="1541164515513" duration="1723000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259000" />
+    <option name="totallyTimeSpent" value="1982000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="1069" width="1857" height="1092" extended-state="6" />
+    <frame x="47" y="-4" width="1873" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25287357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.3294979" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -270,6 +337,11 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32975295" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -282,6 +354,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -289,17 +375,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/assets/logo.svg">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="1500">
+          <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
         </state>
       </provider>
     </entry>
