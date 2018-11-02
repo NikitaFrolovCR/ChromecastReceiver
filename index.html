@@ -29,15 +29,14 @@
     const context = cast.framework.CastReceiverContext.getInstance();
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
-        console.log("track detected");
         window.plugin = new youbora.Plugin({accountCode: 'tdc'});
-        // plugin.setOptions(
-        //     {
-        //         'username': username,
-        //         'parse.hls': true,
-        //         'parse.CDNNode': true,
-        //     }
-        // );
+        plugin.setOptions(
+            {
+                'username': username,
+                'parse.hls': true,
+                'parse.CDNNode': true,
+            }
+        );
 
         const player = context.getPlayerManager();
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
@@ -58,34 +57,33 @@
                 guid = currentItemMedia.customData.guid;
 
                 deleteSettings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
+                    async: true,
+                    crossDomain: true,
+                    url: "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
                         + schema + "&form=" + form + "&account=" + account + "&token=" + token + "&byAboutId="
                         + byAboutId + "&byUserListId=" + byUserListId,
-                    "method": "DELETE"
+                    method: "DELETE"
                 };
 
                 postSettings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
+                    async: true,
+                    crossDomain: true,
+                    url: "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
                         + schema + "&form=" + form + "&account=" + account + "&token=" + token + "&byAboutId="
                         + byAboutId + "&byUserListId=" + byUserListId,
-                    "method": "POST",
-                    "headers": {
+                    method: "POST",
+                    headers: {
                         "Content-Type": "application/json",
                     },
-                    "processData": false,
-                    "data": "{\"$xmlns\":{\"pluserlistitem\":\"http://xml.theplatform.com/userprofile/data/UserListItem\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\"" + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
+                    processData: false,
+                    data: "{\"$xmlns\":{\"pluserlistitem\":\"http://xml.theplatform.com/userprofile/data/UserListItem\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\"" + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
                 };
 
-                $.ajax(deleteSettings).done( (response) => {
-                    console.log(response);
-                    $.ajax(postSettings).done( (res) => {
-                        console.log(res)
+                $.ajax(deleteSettings)
+                    .success((response) => {
+                        $.ajax(postSettings).done((res) => {
+                        });
                     });
-                });
             }
         });
 
@@ -127,8 +125,8 @@
             token = loadRequestData.media.customData.token;
             pid = loadRequestData.media.customData.releasePid;
             username = loadRequestData.media.customData.email;
-            byAboutId = loadRequestData.media.customData.byAboutId;
-            byUserListId = loadRequestData.media.customData.byUserListId;
+            byAboutId = loadRequestData.media.customData.aboutId;
+            byUserListId = loadRequestData.media.customData.userListId;
             guid = loadRequestData.media.customData.guid;
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
