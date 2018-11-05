@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="870296f3-f9a1-451e-8183-e06560c81d29" name="Default Changelist" comment="">
+    <list default="true" id="870296f3-f9a1-451e-8183-e06560c81d29" name="Default Changelist" comment="### features&#10;- WIP: source obtainment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,16 +59,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="html" value="572" />
+          <entry key="html" value="955" />
           <entry key="js" value="43" />
-          <entry key="txt" value="254" />
+          <entry key="txt" value="270" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="572" />
+          <entry key="HTML" value="955" />
           <entry key="JavaScript" value="43" />
-          <entry key="PLAIN_TEXT" value="260" />
+          <entry key="PLAIN_TEXT" value="276" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -91,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="54" column="127" selection-start-line="54" selection-start-column="127" selection-end-line="54" selection-end-column="127" />
+            <state relative-caret-position="390">
+              <caret line="113" selection-start-line="113" selection-end-line="113" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -107,6 +106,7 @@
       <find>timestamp</find>
       <find>qu</find>
       <find>unified</find>
+      <find>access</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -197,7 +197,7 @@
       <workItem from="1540479531469" duration="259000" />
       <workItem from="1541164515513" duration="11793000" />
       <workItem from="1541405900791" duration="61000" />
-      <workItem from="1541406793481" duration="11011000" />
+      <workItem from="1541406793481" duration="15075000" />
     </task>
     <task id="LOCAL-00001" summary="### features&#10;- starting of code refactoring&#10;- logo uploaded&#10;- repo cleanup">
       <created>1541166644816</created>
@@ -304,11 +304,46 @@
       <option name="project" value="LOCAL" />
       <updated>1541417660652</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="### features&#10;- WIP: source obtainment">
+      <created>1541419297419</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1541419297419</updated>
+    </task>
+    <task id="LOCAL-00017" summary="### features&#10;- WIP: source obtainment">
+      <created>1541419498751</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1541419498751</updated>
+    </task>
+    <task id="LOCAL-00018" summary="### features&#10;- WIP: source obtainment">
+      <created>1541419698533</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1541419698533</updated>
+    </task>
+    <task id="LOCAL-00019" summary="### features&#10;- source obtainment">
+      <created>1541420326046</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1541420326046</updated>
+    </task>
+    <task id="LOCAL-00020" summary="### features&#10;- code refactoring">
+      <created>1541423915335</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1541423915335</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23124000" />
+    <option name="totallyTimeSpent" value="27188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -320,7 +355,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="-4" width="1873" height="1084" extended-state="6" />
+    <frame x="-3239" y="-4" width="1873" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.258347" />
@@ -382,7 +417,9 @@
     <MESSAGE value="### features&#10;- switching to dev" />
     <MESSAGE value="### features&#10;- timestamp added" />
     <MESSAGE value="### features&#10;- WIP: source obtainment" />
-    <option name="LAST_COMMIT_MESSAGE" value="### features&#10;- WIP: source obtainment" />
+    <MESSAGE value="### features&#10;- source obtainment" />
+    <MESSAGE value="### features&#10;- code refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="### features&#10;- code refactoring" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -411,8 +448,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="54" column="127" selection-start-line="54" selection-start-column="127" selection-end-line="54" selection-end-column="127" />
+        <state relative-caret-position="390">
+          <caret line="113" selection-start-line="113" selection-end-line="113" selection-end-column="85" />
         </state>
       </provider>
     </entry>

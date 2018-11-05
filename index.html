@@ -73,7 +73,7 @@
                         "Content-Type": "application/json",
                     },
                     processData: false,
-                    data: `{"$xmlns:{"pluserlistitem": "${apiUrl}", "tdc": "${tdcFields}"}, "userListId": "${byUserListId}", "aboutId": "${byAboutId}", "description": "${guid}", "tdc$additionalData": {"timestamp": "${value}"}}`
+                    data: "{\"$xmlns\":{\"pluserlistitem\":\"" + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\"" + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
                 };
 
                 $.ajax(deleteSettings).done((response) => {
