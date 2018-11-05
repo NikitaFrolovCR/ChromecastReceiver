@@ -103,11 +103,7 @@
                             processData: false,
                             data: dataToSend,
                         };
-
-
-                        $.ajax(updateData).done((res) => {
-                            console.log(res)
-                        });
+                        $.ajax(updateData).done((res) => {});
                     } else {
                         $.ajax(postSettings).done((res) => {
                         });
@@ -127,7 +123,6 @@
         requestInfo.url = requestInfo.url + "&account=" + licenceAccountUrl + "&form=json&token=" + token;
     };
 
-    //Manage License URL response and modify before use it.
     playbackConfig.licenseHandler = data => {
         const response = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(data)));
         const license = response.getWidevineLicenseResponse.license;
@@ -142,7 +137,6 @@
         return array;
     };
 
-    // Collect loadRequestData to get the pid and token needed by licenseURL request.
     context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.LOAD, loadRequestData => {
             token = loadRequestData.media.customData.token;
