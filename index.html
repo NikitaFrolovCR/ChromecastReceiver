@@ -73,8 +73,9 @@
 
                 $.ajax(deleteSettings)
                     .done((response) => {
-                        $.ajax(postSettings).done((res) => {
-                        });
+                        if (response.responseCode !== 403) {
+                            $.ajax(postSettings).done((res) => {});
+                        }
                     });
             }
         });
@@ -127,7 +128,7 @@
                 processData: false,
                 url: loadRequestData.media.contentId + '&format=SMIL',
             }).done((response)=> {
-                console.log(response)
+                console.log($(response));
             });
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
