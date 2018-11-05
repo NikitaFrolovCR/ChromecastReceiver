@@ -52,7 +52,7 @@
                     async: true,
                     crossDomain: true,
                     url: "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
-                        + schema + "&form=" + form + "&account=" + account + "&token=" + token + "&byAboutId="
+                        + schema + "&form=" + form + "&account=" + "http://access.auth.theplatform.com/data/Account/2693468579" + "&token=" + token + "&byAboutId="
                         + byAboutId + "&byUserListId=" + byUserListId,
                     method: "DELETE"
                 };
@@ -127,7 +127,7 @@
                 processData: false,
                 url: loadRequestData.media.contentId + '&format=SMIL',
             }).done((response)=> {
-                console.log($.parseXML(response));
+                console.log($.parseXML(response).find('video').getAttribute('src'));
             });
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
