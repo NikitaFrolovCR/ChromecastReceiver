@@ -83,8 +83,7 @@
                 };
 
                 $.ajax(getSettings).done((response) => {
-                    console.log(response);
-                    if (response && response.entries && response.entries.length) {
+                    if (response && response['entries'] && response['entries'].length) {
                         const entry = response.entries[0];
                         const dataToSend = "{\"$xmlns\":{\"pluserlistitem\":\"" + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"id\":\"" + entry.id + "\",\"title\":\"" + entry.title + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
                         const updateData = {
