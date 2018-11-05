@@ -38,9 +38,8 @@
     const playbackConfig = new cast.framework.PlaybackConfig();
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
-        window.plugin = new youbora.Plugin({accountCode: 'tdcdev'});
-
         const player = context.getPlayerManager();
+        window.plugin = new youbora.Plugin({accountCode: 'tdcdev'});
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
     }
 
