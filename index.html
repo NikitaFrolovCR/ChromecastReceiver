@@ -22,14 +22,13 @@
 <body>
 <cast-media-player id="player"></cast-media-player>
 <script>
-    const account = "Blockbuster Nordic";
+    const youboraAccountCode = "tdcdev";
     const schema = "1.0";
     const form = "cjson";
     const apiUrl = "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem";
     const licenceAccountUrl = "http://access.auth.theplatform.com/data/Account/2693468579";
     const licenseUrl = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0";
     const protectionSystem = "widevine";
-    const tdcFields = "http://tdc.dk/fields";
 
     let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, getSettings, guid, contentId,
         timestamp,
@@ -41,7 +40,7 @@
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
         const player = context.getPlayerManager();
-        window.plugin = new youbora.Plugin({accountCode: 'tdcdev'});
+        window.plugin = new youbora.Plugin({accountCode: youboraAccountCode});
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
     }
 
