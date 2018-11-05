@@ -61,8 +61,7 @@
                     async: true,
                     crossDomain: true,
                     url: "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
-                        + schema + "&form=" + form + "&account=" + account + "&token=" + token + "&byAboutId="
-                        + byAboutId + "&byUserListId=" + byUserListId,
+                        + schema + "&form=" + form + "&account=" + account + "&token=" + token,
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -128,7 +127,7 @@
                 processData: false,
                 url: loadRequestData.media.contentId + '&format=SMIL',
             }).done((response)=> {
-                console.log($(response));
+                console.log($.parseXML(response));
             });
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
