@@ -30,7 +30,8 @@
     const protectionSystem = "widevine";
     const tdcFields = "http://tdc.dk/fields";
 
-    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, getSettings, guid, contentId, timestamp,
+    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, getSettings, guid, contentId,
+        timestamp,
         contentResource;
     let lastValue = 0;
 
@@ -83,6 +84,10 @@
                 };
 
                 $.ajax(getSettings).done((response) => {
+                    if (response.responseCode === 403) {
+                        return
+                    }
+
                     const res = JSON.parse(response);
                     if (response && res['entries'] && res['entries'].length) {
                         const entry = res.entries[0];
@@ -100,16 +105,14 @@
                         };
 
 
-                        $.ajax(updateData).done((res) => {console.log(res)});
-                    }
-                });
-
-                /*$.ajax(deleteSettings).done((response) => {
-                    if (response.responseCode !== 403) {
+                        $.ajax(updateData).done((res) => {
+                            console.log(res)
+                        });
+                    } else {
                         $.ajax(postSettings).done((res) => {
                         });
                     }
-                });*/
+                });
             }
         });
 
