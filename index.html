@@ -73,14 +73,16 @@
                 $.ajax(deleteSettings)
                     .done((response) => {
                         if (response.responseCode !== 403) {
-                            $.ajax(postSettings).done((res) => {});
+                            $.ajax(postSettings).done((res) => {
+                            });
                         }
                     });
             }
         });
 
 
-    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid, contentId, timestamp, contentResource;
+    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid, contentId, timestamp,
+        contentResource;
     const playbackConfig = new cast.framework.PlaybackConfig();
 
     playbackConfig.licenseUrl = 'https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0';
@@ -91,7 +93,6 @@
         requestInfo.content = JSON.stringify({getWidevineLicense: {releasePid: pid, widevineChallenge: challenge}});
         requestInfo.headers['content-type'] = "application/json;charset=UTF-8";
         requestInfo.url = requestInfo.url + "&account=http://access.auth.theplatform.com/data/Account/2693468579&form=json&token=" + token;
-        //requestInfo.withCredentials = true;
     };
 
     //Manage License URL response and modify before use it.
@@ -126,9 +127,11 @@
                 method: "GET",
                 processData: false,
                 url: loadRequestData.media.contentId + '&format=SMIL',
-            }).done((response)=> {
-                const xml = $.parseXML(response);
-                console.log($(xml).find('video').attr('src'));
+            }).done((response) => {
+                if (response) {
+                    const xml = $.parseXML(response);
+                    contentResource = $(xml).find('video').attr('src');
+                }
             });
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
@@ -137,7 +140,7 @@
                         'username': username,
                         'parse.hls': true,
                         'parse.CDNNode': true,
-                        'content.resource': '',
+                        'content.resource': contentResource,
                         'additionalData': {timestamp}
                     }
                 );
