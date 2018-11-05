@@ -5,7 +5,6 @@
             src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
     <script src="https://smartplugin.youbora.com/v6/js/adapters/chromecastcaf/6.1.0/sp.min.js"></script>
     <style>
-        /* Add here any special style for CAST player */
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
 
         #player {
@@ -29,7 +28,7 @@
     const context = cast.framework.CastReceiverContext.getInstance();
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
-        window.plugin = new youbora.Plugin({accountCode: 'tdc'});
+        window.plugin = new youbora.Plugin({accountCode: 'tdcdev'});
 
         const player = context.getPlayerManager();
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
@@ -83,12 +82,10 @@
 
     let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid;
     const playbackConfig = new cast.framework.PlaybackConfig();
-    // Customize the license url for playback
+
     playbackConfig.licenseUrl = 'https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0';
     playbackConfig.protectionSystem = 'widevine';
 
-    //Modify License request before do it.
-    //Add extra parameters, headers and content body modification.
     playbackConfig.licenseRequestHandler = requestInfo => {
         const challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
         requestInfo.content = JSON.stringify({getWidevineLicense: {releasePid: pid, widevineChallenge: challenge}});
