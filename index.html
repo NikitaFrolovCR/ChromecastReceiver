@@ -30,7 +30,7 @@
     const protectionSystem = "widevine";
     const tdcFields = "http://tdc.dk/fields";
 
-    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid, contentId, timestamp,
+    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, getSettings, guid, contentId, timestamp,
         contentResource;
     let lastValue = 0;
 
@@ -56,6 +56,13 @@
                 byUserListId = currentItemMedia.customData.userListId;
                 guid = currentItemMedia.customData.guid;
 
+                getSettings = {
+                    async: true,
+                    crossDomain: true,
+                    method: "GET",
+                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
+                };
+
                 deleteSettings = {
                     async: true,
                     crossDomain: true,
@@ -74,6 +81,10 @@
                     processData: false,
                     data: "{\"$xmlns\":{\"pluserlistitem\":\"" + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\"" + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
                 };
+
+                $.ajax(getSettings).done((response) => {
+                    console.log(response);
+                });
 
                 $.ajax(deleteSettings).done((response) => {
                     if (response.responseCode !== 403) {
