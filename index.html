@@ -128,7 +128,7 @@
                 url: loadRequestData.media.contentId + '&format=SMIL',
             }).done((response)=> {
                 const xml = $.parseXML(response);
-                console.log($(xml).find('video').getAttribute('src'));
+                console.log($(xml).find('video').attr('src'));
             });
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
