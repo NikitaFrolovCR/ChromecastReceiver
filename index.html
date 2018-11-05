@@ -116,7 +116,7 @@
             pid = loadRequestData.media.customData.releasePid;
             username = loadRequestData.media.customData.email;
             byAboutId = loadRequestData.media.customData.aboutId;
-            // byUserListId = loadRequestData.media.customData.userListId;
+            byUserListId = loadRequestData.media.customData.userListId;
             guid = loadRequestData.media.customData.guid;
             contentId = loadRequestData.media.contentId;
             timestamp = loadRequestData.media.currentTime;
@@ -126,7 +126,9 @@
                 method: "GET",
                 processData: false,
                 url: loadRequestData.media.contentId + '&format=SMIL',
-            }).done((response)=> console.log(response));
+            }).done((response)=> {
+                console.log(response)
+            });
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
                 plugin.setOptions(
