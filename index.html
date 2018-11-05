@@ -24,8 +24,18 @@
     const account = "Blockbuster Nordic";
     const schema = "1.0";
     const form = "cjson";
+    const apiUrl = "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem";
+    const licenceAccountUrl = "http://access.auth.theplatform.com/data/Account/2693468579";
+    const licenseUrl = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0";
+    const protectionSystem = "widevine";
+    const tdcFields = "http://tdc.dk/fields";
+
+    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid, contentId, timestamp,
+        contentResource;
+    let lastValue = 0;
 
     const context = cast.framework.CastReceiverContext.getInstance();
+    const playbackConfig = new cast.framework.PlaybackConfig();
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
         window.plugin = new youbora.Plugin({accountCode: 'tdcdev'});
@@ -34,7 +44,6 @@
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
     }
 
-    let lastValue = 0;
     context.getPlayerManager().addEventListener(
         cast.framework.events.EventType.TIME_UPDATE, (event) => {
             const value = Math.floor(event.currentMediaTime);
@@ -51,48 +60,40 @@
                 deleteSettings = {
                     async: true,
                     crossDomain: true,
-                    url: "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
-                        + schema + "&form=" + form + "&account=" + "http://access.auth.theplatform.com/data/Account/2693468579" + "&token=" + token + "&byAboutId="
-                        + byAboutId + "&byUserListId=" + byUserListId,
+                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
                     method: "DELETE"
                 };
 
                 postSettings = {
                     async: true,
                     crossDomain: true,
-                    url: "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem/?schema="
-                        + schema + "&form=" + form + "&account=" + "http://access.auth.theplatform.com/data/Account/2693468579" + "&token=" + token,
+                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token,
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     processData: false,
-                    data: "{\"$xmlns\":{\"pluserlistitem\":\"http://xml.theplatform.com/userprofile/data/UserListItem\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\"" + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
+                    data: `{"$xmlns:{"pluserlistitem": "${apiUrl}", "tdc": "${tdcFields}"}, "userListId": "${byUserListId}", "aboutId": "${byAboutId}", "description": "${guid}", "tdc$additionalData": {"timestamp": "${value}"}}`
                 };
 
-                $.ajax(deleteSettings)
-                    .done((response) => {
-                        if (response.responseCode !== 403) {
-                            $.ajax(postSettings).done((res) => {
-                            });
-                        }
-                    });
+                $.ajax(deleteSettings).done((response) => {
+                    if (response.responseCode !== 403) {
+                        $.ajax(postSettings).done((res) => {
+                        });
+                    }
+                });
             }
         });
 
 
-    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, guid, contentId, timestamp,
-        contentResource;
-    const playbackConfig = new cast.framework.PlaybackConfig();
-
-    playbackConfig.licenseUrl = 'https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0';
-    playbackConfig.protectionSystem = 'widevine';
+    playbackConfig.licenseUrl = licenseUrl;
+    playbackConfig.protectionSystem = protectionSystem;
 
     playbackConfig.licenseRequestHandler = requestInfo => {
         const challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
         requestInfo.content = JSON.stringify({getWidevineLicense: {releasePid: pid, widevineChallenge: challenge}});
         requestInfo.headers['content-type'] = "application/json;charset=UTF-8";
-        requestInfo.url = requestInfo.url + "&account=http://access.auth.theplatform.com/data/Account/2693468579&form=json&token=" + token;
+        requestInfo.url = requestInfo.url + "&account=" + licenceAccountUrl + "&form=json&token=" + token;
     };
 
     //Manage License URL response and modify before use it.
