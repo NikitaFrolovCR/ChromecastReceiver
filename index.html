@@ -118,6 +118,9 @@
             byAboutId = loadRequestData.media.customData.aboutId;
             byUserListId = loadRequestData.media.customData.userListId;
             guid = loadRequestData.media.customData.guid;
+            timestamp = loadRequestData.media.currentTime;
+            const player = context.getPlayerManager();
+            const queue = context.getPlayerManager().getQueueManager();
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
                 // window.plugin = new youbora.Plugin({accountCode: 'tdc'})
@@ -126,6 +129,7 @@
                         'username': username,
                         'parse.hls': true,
                         'parse.CDNNode': true,
+                        'additionalData': {timestamp}
                     }
                 );
             }
