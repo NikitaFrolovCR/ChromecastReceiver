@@ -30,7 +30,7 @@
     const licenseUrl = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0";
     const protectionSystem = "widevine";
 
-    let token, pid, username, byAboutId, byUserListId, deleteSettings, postSettings, getSettings, guid, contentId,
+    let token, pid, username, byAboutId, byUserListId, postSettings, getSettings, guid, contentId,
         timestamp,
         contentResource;
     let lastValue = 0;
@@ -62,13 +62,6 @@
                     crossDomain: true,
                     method: "GET",
                     url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
-                };
-
-                deleteSettings = {
-                    async: true,
-                    crossDomain: true,
-                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
-                    method: "DELETE"
                 };
 
                 postSettings = {
