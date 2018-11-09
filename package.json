@@ -4,24 +4,10 @@
   "description": "Return html",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KalinichenkoP/express.git"
-  },
-  "keywords": [
-    "ITS"
-  ],
-  "author": "PavelKalinichenko",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KalinichenkoP/express/issues"
-  },
-  "homepage": "https://github.com/KalinichenkoP/express#readme"
+  }
 }
