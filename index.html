@@ -140,8 +140,9 @@
             guid = loadRequestData.media.customData.guid;
             contentId = loadRequestData.media.contentId;
             timestamp = loadRequestData.media.currentTime;
+            device = loadRequestData.media.customData.device;
 
-            /*$.ajax({
+            $.ajax({
                 async: false,
                 method: "GET",
                 processData: false,
@@ -160,10 +161,11 @@
                         'parse.hls': true,
                         'parse.CDNNode': true,
                         'content.resource': contentResource,
-                        'additionalData': {timestamp}
+                        'additionalData': {timestamp},
+                        'extraparams': {device}
                     }
                 );
-            }*/
+            }
 
             return loadRequestData;
         });
