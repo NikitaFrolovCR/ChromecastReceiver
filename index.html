@@ -143,17 +143,7 @@
             timestamp = loadRequestData.media.currentTime;
             platform = loadRequestData.media.customData.platform;
 
-            $.ajax({
-                async: false,
-                method: "GET",
-                processData: false,
-                url: loadRequestData.media.contentId + '&format=SMIL',
-            }).done((response) => {
-                if (response) {
-                    const xml = $.parseXML(response);
-                    contentResource = $(xml).find('video').attr('src');
-                }
-            });
+            contentResource = contentId;
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
                 plugin.setOptions(
