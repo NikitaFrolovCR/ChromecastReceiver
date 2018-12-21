@@ -29,6 +29,7 @@
     const licenceAccountUrl = "http://access.auth.theplatform.com/data/Account/2693468579";
     const licenseUrl = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0";
     const protectionSystem = "widevine";
+    const cdnType = 2;
 
     let token, pid, username, byAboutId, byUserListId, postSettings, getSettings, guid, contentId,
         timestamp, platform, contentResource;
@@ -165,6 +166,8 @@
                     }
                 );
             }
+
+            loadRequestData.media.contentId = `https://r5plwq1y9j.execute-api.eu-central-1.amazonaws.com/production/proxyCdn?releasePid=${pid}&token=${token}&cdnType=${cdnType}>`;
 
             return loadRequestData;
         });
