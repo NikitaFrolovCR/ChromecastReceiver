@@ -143,17 +143,33 @@
             timestamp = loadRequestData.media.currentTime;
             platform = loadRequestData.media.customData.platform;
 
-            $.ajax({
-                async: false,
-                method: "GET",
-                processData: false,
-                url: loadRequestData.media.contentId + '&format=SMIL',
-            }).done((response) => {
-                if (response) {
-                    const xml = $.parseXML(response);
-                    contentResource = $(xml).find('video').attr('src');
-                }
-            });
+            if (pid) {
+                contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
+                loadRequestData.media.contentId = contentId;
+
+                $.ajax({
+                    async: false,
+                    method: "GET",
+                    processData: false,
+                    url: contentId,
+                }).done((response) => {
+                    if (response) {
+                        console.log(response);
+                    }
+                });
+            } else {
+                $.ajax({
+                    async: false,
+                    method: "GET",
+                    processData: false,
+                    url: contentId + '&format=SMIL',
+                }).done((response) => {
+                    if (response) {
+                        const xml = $.parseXML(response);
+                        contentResource = $(xml).find('video').attr('src');
+                    }
+                });
+            }
 
             if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
                 plugin.setOptions(
@@ -167,14 +183,6 @@
                     }
                 );
             }
-
-            if (!pid) {
-                const url = new URL(contentId);
-                const pathArr = url.pathname.split('/');
-                pid = ["media", pathArr[pathArr.length-1]].join('/')
-            }
-
-            loadRequestData.media.contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
 
             return loadRequestData;
         });
