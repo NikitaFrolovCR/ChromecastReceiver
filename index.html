@@ -143,19 +143,11 @@
             timestamp = loadRequestData.media.currentTime;
             platform = loadRequestData.media.customData.platform;
 
-            if (!pid) {
-                const url = new URL(contentId);
-                const pathArr = url.pathname.split('/');
-                pid = ["media", pathArr[pathArr.length-1]].join('/')
-            }
-
-            loadRequestData.media.contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
-
             $.ajax({
                 async: false,
                 method: "GET",
                 processData: false,
-                url: loadRequestData.media.contentId,
+                url: loadRequestData.media.contentId + '&format=SMIL',
             }).done((response) => {
                 if (response) {
                     const xml = $.parseXML(response);
@@ -175,6 +167,14 @@
                     }
                 );
             }
+
+            if (!pid) {
+                const url = new URL(contentId);
+                const pathArr = url.pathname.split('/');
+                pid = ["media", pathArr[pathArr.length-1]].join('/')
+            }
+
+            loadRequestData.media.contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
 
             return loadRequestData;
         });
