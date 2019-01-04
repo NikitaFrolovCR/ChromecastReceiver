@@ -97,7 +97,8 @@
                             processData: false,
                             data: dataToSend,
                         };
-                        $.ajax(updateData).done((res) => {});
+                        $.ajax(updateData).done((res) => {
+                        });
                     } else {
                         $.ajax(postSettings).done((res) => {
                         });
@@ -144,25 +145,27 @@
             platform = loadRequestData.media.customData.platform;
 
             if (pid) {
-                contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
-                loadRequestData.media.contentId = contentId;
+                loadRequestData.media.contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
+                let cdnRoute;
+                switch (cdnType) {
+                    case 1:
+                        cdnRoute = "unified.cdn.bbaws.net";
+                        break;
+                    case 2 :
+                        cdnRoute = "blckbstdk.hs.llnwd.net";
+                        break;
+                    case 3 :
+                        cdnRoute = "unified-non-metro.cdn.bbaws.net";
+                        break;
+                }
 
-                $.ajax({
-                    async: false,
-                    method: "GET",
-                    processData: false,
-                    url: contentId,
-                }).done((response) => {
-                    if (response) {
-                        console.log(response);
-                    }
-                });
+                contentResource = `https://${cdnRoute}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
             } else {
                 $.ajax({
                     async: false,
                     method: "GET",
                     processData: false,
-                    url: contentId + '&format=SMIL',
+                    url: loadRequestData.media.contentId + '&format=SMIL',
                 }).done((response) => {
                     if (response) {
                         const xml = $.parseXML(response);
