@@ -155,7 +155,7 @@
                 async: false,
                 method: "GET",
                 processData: false,
-                url: loadRequestData.media.contentId + '&format=SMIL',
+                url: loadRequestData.media.contentId,
             }).done((response) => {
                 if (response) {
                     const xml = $.parseXML(response);
