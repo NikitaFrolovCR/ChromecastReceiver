@@ -145,21 +145,9 @@
             platform = loadRequestData.media.customData.platform;
 
             if (pid) {
-                loadRequestData.media.contentId = `${cdnUrl}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
-                let cdnRoute;
-                switch (cdnType) {
-                    case 1:
-                        cdnRoute = "unified.cdn.bbaws.net";
-                        break;
-                    case 2 :
-                        cdnRoute = "blckbstdk.hs.llnwd.net";
-                        break;
-                    case 3 :
-                        cdnRoute = "unified-non-metro.cdn.bbaws.net";
-                        break;
-                }
-
-                contentResource = `https://${cdnRoute}?releasePid=${pid}&token=${token}&cdnType=${cdnType}`;
+                const urlWithCdn = contentId + '&cdnType=' + cdnType;
+                loadRequestData.media.contentId = urlWithCdn;
+                contentResource = urlWithCdn;
             } else {
                 $.ajax({
                     async: false,
