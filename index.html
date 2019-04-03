@@ -165,10 +165,10 @@
         });
     };
     context.getPlayerManager().addEventListener(
-        cast.framework.events.EventType.PAUSE, event => setBookmark(event));
+        cast.framework.events.EventType.PAUSE, (event) => setBookmark(event));
 
     context.getPlayerManager().addEventListener(
-        cast.framework.events.EventType.STOP, event => setBookmark(event));
+        cast.framework.events.EventType.REQUEST_STOP, event => setBookmark(event));
 
     context.getPlayerManager().addEventListener(
         cast.framework.events.EventType.TIME_UPDATE, (event) => {
