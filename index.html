@@ -104,7 +104,8 @@
         });
 
     setBookmark = (event) => {
-        lastValue = Math.floor(event.currentMediaTime);
+        const currentTime = event.currentMediaTime || context.getPlayerManager().getCurrentTimeSec();
+        lastValue = Math.floor(currentTime);
         const queueManager = context.getPlayerManager().getQueueManager();
         const currentItemMedia = queueManager.getCurrentItem().media;
         byAboutId = currentItemMedia.customData.aboutId;
