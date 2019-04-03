@@ -163,10 +163,10 @@
             }
         });
     };
-    context.getPlayerManager().addEventListener(
+    context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.PAUSE, event => setBookmark(event));
 
-    context.getPlayerManager().addEventListener(
+    context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.STOP, event => setBookmark(event));
 
     context.getPlayerManager().addEventListener(
