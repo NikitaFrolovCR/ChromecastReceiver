@@ -6,12 +6,13 @@
     <script src="https://smartplugin.youbora.com/v6/js/adapters/chromecastcaf/6.1.0/sp.min.js"></script>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
         #player {
-			--theme-hue: 100;
+            --theme-hue: 100;
             --progress-color: rgba(255, 255, 255, 0.2);
             --splash-image: url("assets/splash.png");
             --splash-size: 100%;
-			--logo-image:  url("assets/logo.png");
+            --logo-image: url("assets/logo.png");
             --font-family: 'Open Sans', sans-serif;
         }
     </style>
@@ -26,79 +27,24 @@
     const licenceAccountUrl = "http://access.auth.theplatform.com/data/Account/2693468579";
     const licenseUrl = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0";
     const protectionSystem = "widevine";
-    const cdnUrl = "https://r5plwq1y9j.execute-api.eu-central-1.amazonaws.com/production/proxyCdn";
     const cdnType = 2;
+    const context = cast.framework.CastReceiverContext.getInstance();
+    const playbackConfig = new cast.framework.PlaybackConfig();
     let token, pid, username, byAboutId, byUserListId, postSettings, getSettings, guid, contentId,
         timestamp, platform, contentResource;
     let lastValue = 0;
-    const context = cast.framework.CastReceiverContext.getInstance();
-    const playbackConfig = new cast.framework.PlaybackConfig();
+
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
         const player = context.getPlayerManager();
-        window.plugin = new youbora.Plugin({accountCode: youboraAccountCode});
+        window.plugin = new youbora.Plugin({ accountCode: youboraAccountCode });
         plugin.setAdapter(new youbora.adapters.ChromecastCAF(player))
     }
-    context.getPlayerManager().addEventListener(
-        cast.framework.events.EventType.TIME_UPDATE, (event) => {
-            const value = Math.floor(event.currentMediaTime);
-            if (value % 10 === 0 && value !== lastValue) {
-                lastValue = value;
-                const queueManager = context.getPlayerManager().getQueueManager();
-                const currentItemMedia = queueManager.getCurrentItem().media;
-                byAboutId = currentItemMedia.customData.aboutId;
-                byUserListId = currentItemMedia.customData.userListId;
-                guid = currentItemMedia.customData.guid;
-                getSettings = {
-                    async: true,
-                    crossDomain: true,
-                    method: "GET",
-                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
-                };
-                postSettings = {
-                    async: true,
-                    crossDomain: true,
-                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token,
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    processData: false,
-                    data: "{\"$xmlns\":{\"pluserlistitem\":\"" + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\"" + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
-                };
-                $.ajax(getSettings).done((response) => {
-                    if (response.responseCode === 403) {
-                        return
-                    }
-                    const res = JSON.parse(response);
-                    if (response && res['entries'] && res['entries'].length) {
-                        const entry = res.entries[0];
-                        const dataToSend = "{\"$xmlns\":{\"pluserlistitem\":\"" + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"id\":\"" + entry.id + "\",\"title\":\"" + entry.title + "\",\"description\":\"" + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
-                        const updateData = {
-                            async: true,
-                            crossDomain: true,
-                            url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl + "&token=" + token,
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            processData: false,
-                            data: dataToSend,
-                        };
-                        $.ajax(updateData).done((res) => {
-                        });
-                    } else {
-                        $.ajax(postSettings).done((res) => {
-                        });
-                    }
-                });
-            }
-        });
-	playbackConfig.autoResumeDuration = 2;
+    playbackConfig.autoResumeDuration = 2;
     playbackConfig.licenseUrl = licenseUrl;
     playbackConfig.protectionSystem = protectionSystem;
     playbackConfig.licenseRequestHandler = requestInfo => {
         const challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
-        requestInfo.content = JSON.stringify({getWidevineLicense: {releasePid: pid, widevineChallenge: challenge}});
+        requestInfo.content = JSON.stringify({ getWidevineLicense: { releasePid: pid, widevineChallenge: challenge } });
         requestInfo.headers['content-type'] = "application/json;charset=UTF-8";
         requestInfo.url = requestInfo.url + "&account=" + licenceAccountUrl + "&form=json&token=" + token;
     };
@@ -113,6 +59,7 @@
         }
         return array;
     };
+
     context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.LOAD, loadRequestData => {
             token = loadRequestData.media.customData.token;
@@ -148,14 +95,89 @@
                         'parse.hls': true,
                         'parse.CDNNode': true,
                         'content.resource': contentResource,
-                        'additionalData': {timestamp},
+                        'additionalData': { timestamp },
                         'extraparam.3': platform ? platform : 'unknown'
                     }
                 );
             }
             return loadRequestData;
         });
-    context.start({playbackConfig: playbackConfig});
+
+    setBookmark = (event) => {
+        lastValue = Math.floor(event.currentMediaTime);
+        const queueManager = context.getPlayerManager().getQueueManager();
+        const currentItemMedia = queueManager.getCurrentItem().media;
+        byAboutId = currentItemMedia.customData.aboutId;
+        byUserListId = currentItemMedia.customData.userListId;
+        guid = currentItemMedia.customData.guid;
+        getSettings = {
+            async: true,
+            crossDomain: true,
+            method: "GET",
+            url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl
+                + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
+        };
+        postSettings = {
+            async: true,
+            crossDomain: true,
+            url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account="
+                + licenceAccountUrl + "&token=" + token,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            processData: false,
+            data: "{\"$xmlns\":{\"pluserlistitem\":\""
+                + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\""
+                + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\""
+                + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
+        };
+        $.ajax(getSettings).done((response) => {
+            if (response.responseCode === 403) {
+                return
+            }
+            const res = JSON.parse(response);
+            if (response && res['entries'] && res['entries'].length) {
+                const entry = res.entries[0];
+                const dataToSend = "{\"$xmlns\":{\"pluserlistitem\":\""
+                    + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"id\":\""
+                    + entry.id + "\",\"title\":\"" + entry.title + "\",\"description\":\""
+                    + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}";
+                const updateData = {
+                    async: true,
+                    crossDomain: true,
+                    url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account="
+                        + licenceAccountUrl + "&token=" + token,
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    processData: false,
+                    data: dataToSend,
+                };
+                $.ajax(updateData).done((res) => {
+                });
+            } else {
+                $.ajax(postSettings).done((res) => {
+                });
+            }
+        });
+    };
+    context.getPlayerManager().addEventListener(
+        cast.framework.messages.MessageType.PAUSE, event => setBookmark(event));
+
+    context.getPlayerManager().addEventListener(
+        cast.framework.messages.MessageType.STOP, event => setBookmark(event));
+
+    context.getPlayerManager().addEventListener(
+        cast.framework.events.EventType.TIME_UPDATE, (event) => {
+            const value = Math.floor(event.currentMediaTime);
+            if (value % 5 === 0 && value !== lastValue) {
+                setBookmark(event)
+            }
+        });
+
+    context.start({ playbackConfig: playbackConfig });
 </script>
 </body>
 </html>
