@@ -131,7 +131,7 @@
             data: "{\"$xmlns\":{\"pluserlistitem\":\""
                 + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"userListId\":\""
                 + byUserListId + "\",\"aboutId\":\"" + byAboutId + "\",\"description\":\""
-                + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}"
+                + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + lastValue + "\"}}"
         };
         $.ajax(getSettings).done((response) => {
             if (response.responseCode === 403) {
@@ -143,7 +143,7 @@
                 const dataToSend = "{\"$xmlns\":{\"pluserlistitem\":\""
                     + apiUrl + "\",\"tdc\":\"http://tdc.dk/fields\"},\"id\":\""
                     + entry.id + "\",\"title\":\"" + entry.title + "\",\"description\":\""
-                    + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + value + "\"}}";
+                    + guid + "\",\"tdc$additionalData\":{\"timestamp\":\"" + lastValue + "\"}}";
                 const updateData = {
                     async: true,
                     crossDomain: true,
