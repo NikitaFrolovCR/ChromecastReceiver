@@ -191,7 +191,7 @@
             const currentItemMedia = queueManager.getCurrentItem().media;
             const duration = currentItemMedia.duration;
             const value = Math.floor(event.currentMediaTime);
-            duration - value <= 30 ? setBookmark(event, duration - value) : setBookmark(event);
+            duration - value <= 30 ? setBookmark(event, duration - 30) : setBookmark(event);
         });
 
     context.getPlayerManager().addEventListener(
@@ -200,7 +200,7 @@
             const currentItemMedia = queueManager.getCurrentItem().media;
             const duration = currentItemMedia.duration;
             const value = Math.floor(event.currentMediaTime);
-            duration - value <= 30 ? setBookmark(event, duration - value) : setBookmark(event);
+            duration - value <= 30 ? setBookmark(event, duration - 30) : setBookmark(event);
         });
 
     context.getPlayerManager().addEventListener(
@@ -209,7 +209,7 @@
             const currentItemMedia = queueManager.getCurrentItem().media;
             const duration = currentItemMedia.duration;
             const value = Math.floor(event.currentMediaTime);
-            duration - value <= 30 ? setBookmark(event, duration - value) : setBookmark(event);
+            duration - value <= 30 ? setBookmark(event, duration - 30) : setBookmark(event);
         });
 
     context.getPlayerManager().addEventListener(
