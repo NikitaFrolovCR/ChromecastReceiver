@@ -106,11 +106,11 @@
     setBookmark = (event) => {
         const queueManager = context.getPlayerManager().getQueueManager();
         const currentItemMedia = queueManager.getCurrentItem().media;
+        const currentTime = event.currentMediaTime || context.getPlayerManager().getCurrentTimeSec();
         const duration = currentItemMedia.duration;
         const isMovieEndingSoon = currentItemMedia.customData.programType === "movie" && duration - event.currentMediaTime <= 60;
-        const isVideoEndingSoon = duration - event.currentMediaTime <= 30;
-        const currentTime = event.currentMediaTime || context.getPlayerManager().getCurrentTimeSec();
         lastValue = Math.floor(currentTime);
+        const isVideoEndingSoon = duration - lastValue < 30;
         byAboutId = currentItemMedia.customData.aboutId;
         byUserListId = currentItemMedia.customData.userListId;
         guid = currentItemMedia.customData.guid;
@@ -193,8 +193,11 @@
 
     context.getPlayerManager().addEventListener(
         cast.framework.events.EventType.TIME_UPDATE, (event) => {
+            const queueManager = context.getPlayerManager().getQueueManager();
+            const currentItemMedia = queueManager.getCurrentItem().media;
+            const duration = currentItemMedia.duration;
             const value = Math.floor(event.currentMediaTime);
-            if (value % 5 === 0 && value !== lastValue) {
+            if (value % 5 === 0 && value !== lastValue || duration - value === 30) {
                 setBookmark(event)
             }
         });
