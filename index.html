@@ -103,7 +103,7 @@
             return loadRequestData;
         });
 
-    setBookmark = (event) => {
+    setBookmark = (event, definedTime) => {
         const queueManager = context.getPlayerManager().getQueueManager();
         const currentItemMedia = queueManager.getCurrentItem().media;
         const currentTime = event.currentMediaTime || context.getPlayerManager().getCurrentTimeSec();
@@ -126,8 +126,11 @@
             })
         }
 
-        if (isMovieEndingSoon || isVideoEndingSoon) {
+        if (isMovieEndingSoon || (isVideoEndingSoon && !definedTime)) {
             return;
+        }
+        if (!!definedTime) {
+            lastValue = definedTime;
         }
         getSettings = {
             async: true,
@@ -183,13 +186,31 @@
         });
     };
     context.getPlayerManager().addEventListener(
-        cast.framework.events.EventType.PAUSE, (event) => setBookmark(event));
+        cast.framework.events.EventType.PAUSE, (event) => {
+            const queueManager = context.getPlayerManager().getQueueManager();
+            const currentItemMedia = queueManager.getCurrentItem().media;
+            const duration = currentItemMedia.duration;
+            const value = Math.floor(event.currentMediaTime);
+            duration - value <= 30 ? setBookmark(event, duration - value) : setBookmark(event);
+        });
 
     context.getPlayerManager().addEventListener(
-        cast.framework.events.EventType.REQUEST_STOP, event => setBookmark(event));
+        cast.framework.events.EventType.REQUEST_STOP, event => {
+            const queueManager = context.getPlayerManager().getQueueManager();
+            const currentItemMedia = queueManager.getCurrentItem().media;
+            const duration = currentItemMedia.duration;
+            const value = Math.floor(event.currentMediaTime);
+            duration - value <= 30 ? setBookmark(event, duration - value) : setBookmark(event);
+        });
 
     context.getPlayerManager().addEventListener(
-        cast.framework.events.EventType.LIVE_ENDED, event => setBookmark(event));
+        cast.framework.events.EventType.LIVE_ENDED, event => {
+            const queueManager = context.getPlayerManager().getQueueManager();
+            const currentItemMedia = queueManager.getCurrentItem().media;
+            const duration = currentItemMedia.duration;
+            const value = Math.floor(event.currentMediaTime);
+            duration - value <= 30 ? setBookmark(event, duration - value) : setBookmark(event);
+        });
 
     context.getPlayerManager().addEventListener(
         cast.framework.events.EventType.TIME_UPDATE, (event) => {
