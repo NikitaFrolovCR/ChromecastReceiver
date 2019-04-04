@@ -107,7 +107,7 @@
         const queueManager = context.getPlayerManager().getQueueManager();
         const currentItemMedia = queueManager.getCurrentItem().media;
         const duration = currentItemMedia.duration;
-        const isMovieEndingSoon = currentItemMedia.programType === "movie" && duration - event.currentMediaTime <= 60;
+        const isMovieEndingSoon = currentItemMedia.customData.programType === "movie" && duration - event.currentMediaTime <= 60;
         const isVideoEndingSoon = duration - event.currentMediaTime <= 30;
         const currentTime = event.currentMediaTime || context.getPlayerManager().getCurrentTimeSec();
         lastValue = Math.floor(currentTime);
