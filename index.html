@@ -31,7 +31,7 @@
     const context = cast.framework.CastReceiverContext.getInstance();
     const playbackConfig = new cast.framework.PlaybackConfig();
     let token, pid, username, byAboutId, byUserListId, postSettings, getSettings, guid, contentId,
-        timestamp, platform, contentResource;
+        timestamp, platform, contentResource, deleteBookmark;
     let lastValue = 0;
 
     if (typeof youbora !== "undefined" && typeof youbora.adapters.ChromecastCAF !== "undefined") {
@@ -109,18 +109,26 @@
         const duration = currentItemMedia.duration;
         const isMovieEndingSoon = currentItemMedia.programType === "movie" && duration - event.currentMediaTime <= 60;
         const isVideoEndingSoon = duration - event.currentMediaTime <= 30;
-        if (isMovieEndingSoon) {
-            // TODO: remove bookmark
-        }
-
-        if (isMovieEndingSoon || isVideoEndingSoon) {
-            return;
-        }
         const currentTime = event.currentMediaTime || context.getPlayerManager().getCurrentTimeSec();
         lastValue = Math.floor(currentTime);
         byAboutId = currentItemMedia.customData.aboutId;
         byUserListId = currentItemMedia.customData.userListId;
         guid = currentItemMedia.customData.guid;
+        if (isMovieEndingSoon) {
+            deleteBookmark = {
+                async: true,
+                crossDomain: true,
+                method: "DELETE",
+                url: apiUrl + "/?schema=" + schema + "&form=" + form + "&account=" + licenceAccountUrl
+                    + "&token=" + token + "&byAboutId=" + byAboutId + "&byUserListId=" + byUserListId,
+            };
+            $.ajax(deleteBookmark).done((res) => {
+            })
+        }
+
+        if (isMovieEndingSoon || isVideoEndingSoon) {
+            return;
+        }
         getSettings = {
             async: true,
             crossDomain: true,
