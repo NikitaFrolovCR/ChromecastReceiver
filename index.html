@@ -42,6 +42,7 @@
     playbackConfig.autoResumeDuration = 2;
     playbackConfig.licenseUrl = licenseUrl;
     playbackConfig.protectionSystem = protectionSystem;
+
     playbackConfig.licenseRequestHandler = requestInfo => {
         const challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
         requestInfo.content = JSON.stringify({ getWidevineLicense: { releasePid: pid, widevineChallenge: challenge } });
@@ -59,6 +60,13 @@
         }
         return array;
     };
+
+    context.getPlayerManager().setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
+        if (loadRequest.media.customData && loadRequest.media.customData.licenseUrl) {
+            playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl || licenseUrl;
+        }
+        return playbackConfig;
+    });
 
     context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.LOAD, loadRequestData => {
