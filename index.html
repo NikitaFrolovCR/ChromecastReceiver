@@ -44,10 +44,9 @@
     playbackConfig.protectionSystem = protectionSystem;
     playbackConfig.licenseRequestHandler = requestInfo => {
         const challenge = btoa(String.fromCharCode.apply(null, new Uint8Array(requestInfo.content)));
-        const paramSymbol = requestInfo.url.split("?").length > 1 ? "&" : "?";
         requestInfo.content = JSON.stringify({ getWidevineLicense: { releasePid: pid, widevineChallenge: challenge } });
         requestInfo.headers['content-type'] = "application/json;charset=UTF-8";
-        requestInfo.url = requestInfo.url.replace(/^http:\/\//i, 'https://') + paramSymbol + "account=" + licenceAccountUrl + "&form=json&token=" + token;
+        requestInfo.url = licenseUrl + "&account=" + licenceAccountUrl + "&form=json&token=" + token;
     };
     playbackConfig.licenseHandler = data => {
         const response = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(data)));
