@@ -23,10 +23,10 @@
     const youboraAccountCode = "tdcdev";
     const schema = "1.0";
     const form = "cjson";
-    const apiUrl = "http://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem";
+    const apiUrl = "https://data.userprofile.community.theplatform.eu/userprofile/data/UserListItem";
     const licenceAccountUrl = "http://access.auth.theplatform.com/data/Account/2693468579";
     const licenseUrl = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm?schema=1.0";
-    const protectionSystem = "NONE";
+    const protectionSystem = "WIDEVINE";
     const cdnType = 2;
     const context = cast.framework.CastReceiverContext.getInstance();
     const playbackConfig = new cast.framework.PlaybackConfig();
@@ -60,13 +60,6 @@
         }
         return array;
     };
-
-    context.getPlayerManager().setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
-        if (loadRequest.media.customData && loadRequest.media.customData.licenseUrl) {
-            playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl || licenseUrl;
-        }
-        return playbackConfig;
-    });
 
     context.getPlayerManager().setMessageInterceptor(
         cast.framework.messages.MessageType.LOAD, loadRequestData => {
